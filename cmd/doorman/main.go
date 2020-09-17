@@ -3,18 +3,45 @@ package main
 import (
 	"doorman/internal"
 	"fmt"
+	"github.com/jessevdk/go-flags"
 	"os"
 )
 
+type Options struct {
+	// Slice of chair width, height or depth
+	CharSlice []*float64 `long:"chair" description:"Chair width, height or depth"`
+	// Slice of door width or height
+	DoorSlice []*float64 `long:"door" description:"Door width or height"`
+}
+
 func main() {
-	char := internal.Chair{X: 1, Y: 20, Z: 15}
-	door := internal.Door{X: 10, Y: 1}
+	os.Exit(run(os.Args[1:]))
+}
+
+func run(args []string) int {
+	var opts Options
+	args, err := flags.ParseArgs(&opts, args)
+
+	if err != nil {
+		return 1
+	}
+
+	char := internal.Chair{
+		X: *opts.CharSlice[0],
+		Y: *opts.CharSlice[1],
+		Z: *opts.CharSlice[2],
+	}
+
+	door := internal.Door{
+		X: *opts.DoorSlice[0],
+		Y: *opts.DoorSlice[1],
+	}
 
 	if char.CanThrough(door) {
 		fmt.Println("通れます")
-		os.Exit(0)
+		return 0
 	}
 
 	fmt.Println("通れません")
-	os.Exit(1)
+	return 1
 }
