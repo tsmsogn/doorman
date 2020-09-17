@@ -1,4 +1,4 @@
-package main
+package internal
 
 import (
 	"math"
@@ -7,14 +7,14 @@ import (
 type Door struct {
 	Object2d
 
-	x float64
-	y float64
+	X float64
+	Y float64
 }
 
 func (door Door) MinEdge() float64 {
-	return math.Min(door.x, door.y)
+	return math.Min(door.X, door.Y)
 }
 
 func (door Door) MaxEdge() float64 {
-	return math.Max(door.x, door.y)
+	return math.Max(door.X, door.Y)
 }

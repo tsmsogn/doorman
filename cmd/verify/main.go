@@ -1,15 +1,16 @@
 package main
 
 import (
+	"doorman/internal"
 	"fmt"
 	"os"
 )
 
 func main() {
-	char := Chair{x: 1, y: 20, z: 15}
-	door := Door{x: 10, y: 1}
+	char := internal.Chair{X: 1, Y: 20, Z: 15}
+	door := internal.Door{X: 10, Y: 1}
 
-	if char.canThrough(door) {
+	if char.CanThrough(door) {
 		fmt.Println("通れます")
 		os.Exit(0)
 	}

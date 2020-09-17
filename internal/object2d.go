@@ -1,4 +1,4 @@
-package main
+package internal
 
 type Object2d interface {
 	Object
