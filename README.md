@@ -5,7 +5,8 @@
 ## Build
 
 ```shell
-cd $APP/cmd/doorman
+git clone https://github.com/tsmsogn/doorman.git
+cd doorman/cmd/doorman
 go build
 ```
 
